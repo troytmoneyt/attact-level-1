@@ -1,11 +1,4 @@
-sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, otherSprite) {
-    sprites.destroyAllSpritesOfKind(SpriteKind.Projectile)
-    info.changeScoreBy(1)
-})
-sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
-    info.changeLifeBy(-1)
-})
-controller.A.onEvent(ControllerButtonEvent.Repeated, function () {
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite4 = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
@@ -24,7 +17,14 @@ controller.A.onEvent(ControllerButtonEvent.Repeated, function () {
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
         `, SpriteKind.Projectile)
-    mySprite4.follow(mySprite2, 100)
+    mySprite4.follow(mySprite2, 999)
+})
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Projectile, function (sprite, otherSprite) {
+    sprites.destroyAllSpritesOfKind(SpriteKind.Projectile)
+    info.changeScoreBy(1)
+})
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
+    info.changeLifeBy(-1)
 })
 let mySprite4: Sprite = null
 let mySprite2: Sprite = null
@@ -84,6 +84,6 @@ tiles.setCurrentTilemap(tilemap`level1`)
 controller.moveSprite(mySprite)
 tiles.placeOnRandomTile(mySprite2, sprites.castle.tileGrass1)
 scene.cameraFollowSprite(mySprite)
-mySprite2.follow(mySprite, 40)
+mySprite2.follow(mySprite, 92)
 info.setScore(0)
 info.setLife(3)
